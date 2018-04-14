@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">newwater</string>
+    <string name="hotwater">热水</string>
+    <string name="warmwater">温水</string>
+    <string name="coolwater">冷水</string>
+    <string name="dixieccup">纸杯</string>
+    <string name="exit">退出(20s)</string>
+    <string name="Dts">出水Dts</string>
+    <string name="jiare">加热</string>
+    <string name="zhileng">制冷</string>
+    <string name="zhishui">制水</string>
+    <string name="chongxi">冲洗</string>
+    <string name="openorclose">设备开机</string>
+
+
+
+
+</resources>
