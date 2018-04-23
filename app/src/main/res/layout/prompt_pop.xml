@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:layout_margin="@dimen/margintop"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/waringico"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_launcher_foreground"
+            />
+        <TextView
+            android:layout_toRightOf="@+id/waringico"
+            android:id="@+id/right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/getwaterwarning"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:padding="@dimen/margintop" />
+        <!--操作按钮-->
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <RelativeLayout
+            android:id="@+id/outcupleft"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/circlebutton"
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/topsure"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/shuidi"
+
+                />
+            <TextView
+                android:id="@+id/bottomsure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sure"
+                android:layout_below="@+id/topsure"
+                android:gravity="center"
+                />
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/circlebutton"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margintop"
+            android:id="@+id/outcupright"
+            >
+
+            <ImageView
+                android:id="@+id/topcancelimage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/shuidi"
+
+                />
+            <TextView
+                android:id="@+id/bottomcancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:layout_below="@+id/topcancelimage"
+                android:gravity="center"
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

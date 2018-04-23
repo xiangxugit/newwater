@@ -43,7 +43,7 @@ public class TimeBack {
         @Override
         public void onFinish() {
             // TODO Auto-generated method stub
-            showTextView.setText("重新验证");
+            showTextView.setText("30S");
             showTextView.setClickable(true);
         }
 

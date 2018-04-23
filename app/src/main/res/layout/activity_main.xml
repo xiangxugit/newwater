@@ -3,11 +3,242 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/black"
+    android:background="@drawable/timg"
+    android:layout_gravity="center"
+    android:gravity="center"
     >
 
     <LinearLayout
-        android:id="@+id/lefttext"
+        android:id="@+id/leftoperate"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/middleimg"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+
+        <!--温度计-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/wenduji"
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:background="@drawable/wendu"
+                />
+
+            <TextView
+                android:id="@+id/hotwatertext"
+                android:layout_toRightOf="@+id/wenduji"
+                android:textColor="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热93℃"
+                />
+
+            <TextView
+                android:id="@+id/coolwatertext"
+                android:layout_toRightOf="@+id/wenduji"
+                android:layout_below="@+id/hotwatertext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whitercolor"
+                android:text="冷18℃"
+                android:gravity="bottom"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <!--水质监测-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Dts"
+                android:textColor="@color/whitercolor"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margintop"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/shuidi"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="91"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ppm"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--水滴下方-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/yuanshuitds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="原水TDS"
+                android:textColor="@color/whitercolor"
+                />
+
+
+
+
+
+            <TextView
+                android:id="@+id/ppm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2184ppm"
+                android:textColor="@color/whitercolor"
+                android:layout_marginLeft="@dimen/margintop"
+                />
+
+
+        </LinearLayout>
+
+
+        <!--deviceoperate-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/tobehot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/jiare"
+                android:textColor="@color/red"
+                />
+
+            <TextView
+                android:id="@+id/tobecool"
+                android:layout_width="wrap_content"
+                android:text="@string/zhileng"
+                android:layout_toRightOf="@+id/tobehot"
+                android:textColor="@color/blue"
+                android:gravity="right"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:id="@+id/zhishui"
+                android:layout_below="@+id/tobehot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zhishui"
+                android:textColor="@color/whitercolor"
+                />
+
+
+
+            <TextView
+                android:id="@+id/chongxi"
+                android:layout_width="wrap_content"
+                android:text="@string/chongxi"
+                android:layout_toRightOf="@+id/zhishui"
+                android:layout_below="@+id/tobecool"
+                android:textColor="@color/blue"
+                android:gravity="right"
+
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+        <!--设备操作-->
+        <Button
+            android:id="@+id/openorclose"
+            android:text="@string/openorclose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/middleimg"
+        android:layout_width="0dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/lefttext"
+        android:layout_weight="6">
+
+        <ImageView
+            android:id="@+id/ad"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+             />
+
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ad"
+            android:background="@drawable/button_click"
+            android:gravity="center"
+            android:text="@string/exit" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/rightoperate"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_weight="2"
@@ -59,228 +290,6 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/middleimg"
-        android:layout_width="0dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_toRightOf="@+id/lefttext"
-        android:layout_weight="6">
-
-        <ImageView
-            android:id="@+id/ad"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/timg" />
-
-
-        <TextView
-            android:id="@+id/exit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/ad"
-            android:background="@drawable/button_click"
-            android:gravity="center"
-            android:text="@string/exit" />
-
-    </RelativeLayout>
-
-
-        <LinearLayout
-            android:id="@+id/rightoperate"
-            android:layout_width="0dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_toRightOf="@+id/middleimg"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-
-            <!--温度计-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_height="50dp">
-                <ImageView
-                    android:id="@+id/wenduji"
-                    android:layout_width="25dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/wendu"
-                    />
-
-                <TextView
-                    android:id="@+id/hotwatertext"
-                    android:layout_toRightOf="@+id/wenduji"
-                    android:textColor="@color/red"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="热93℃"
-                    />
-
-                <TextView
-                    android:id="@+id/coolwatertext"
-                    android:layout_toRightOf="@+id/wenduji"
-                    android:layout_below="@+id/hotwatertext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/whitercolor"
-                    android:text="冷18℃"
-                    android:gravity="bottom"
-                    android:layout_alignParentBottom="true"
-                    />
-            </RelativeLayout>
-            <!--水质监测-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Dts"
-                    android:textColor="@color/whitercolor"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/margintop"
-                    />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/shuidi"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="91"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="60dp"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ppm"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        />
-
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <!--水滴下方-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                android:id="@+id/yuanshuitds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="原水TDS"
-                android:textColor="@color/whitercolor"
-                />
-
-
-
-
-
-                <TextView
-                    android:id="@+id/ppm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2184ppm"
-                    android:textColor="@color/whitercolor"
-                    android:layout_marginLeft="@dimen/margintop"
-                    />
-
-
-            </LinearLayout>
-
-
-            <!--deviceoperate-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-
-                <TextView
-                    android:id="@+id/tobehot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/jiare"
-                    android:textColor="@color/red"
-                    />
-
-                <TextView
-                    android:id="@+id/tobecool"
-                    android:layout_width="wrap_content"
-                    android:text="@string/zhileng"
-                    android:layout_toRightOf="@+id/tobehot"
-                    android:textColor="@color/blue"
-                    android:gravity="right"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="wrap_content" />
-
-
-
-                <TextView
-                    android:id="@+id/zhishui"
-                    android:layout_below="@+id/tobehot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zhishui"
-                    android:textColor="@color/whitercolor"
-                    />
-
-
-
-                <TextView
-                    android:id="@+id/chongxi"
-                    android:layout_width="wrap_content"
-                    android:text="@string/chongxi"
-                    android:layout_toRightOf="@+id/zhishui"
-                    android:layout_below="@+id/tobecool"
-                    android:textColor="@color/blue"
-                    android:gravity="right"
-
-                    android:layout_alignParentRight="true"
-                    android:layout_height="wrap_content" />
-
-
-            </RelativeLayout>
-
-
-            <!--设备操作-->
-            <Button
-                android:id="@+id/openorclose"
-                android:text="@string/openorclose"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-
-
-
-        </LinearLayout>
 
 
 
