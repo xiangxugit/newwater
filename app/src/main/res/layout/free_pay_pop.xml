@@ -7,6 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/margintop"
+        android:layout_gravity="center"
+        android:gravity="center"
         >
         <LinearLayout
             android:id="@+id/leftpop"
