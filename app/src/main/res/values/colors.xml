@@ -11,5 +11,6 @@
     <color name="loginBtnSelectborder50">#7f6bcab2</color>
     <color name="unicom_general_button">#FF0033</color>
     <color name="grey">#bf9e98</color>
+    <color name="scanqcode">#14c3fd</color>
 
 </resources>

@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import newwater.com.newwater.utils.TimeBack;
 import newwater.com.newwater.view.PopWindow;
@@ -15,9 +17,11 @@ import newwater.com.newwater.view.PopWindowChooseWaterGetWay;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView exit;
     private TextView dixieccup;//纸杯和我要饮水按钮
+    private Boolean operateornot  = false;
     private LinearLayout leftoperate;//左边操作区域
     private LinearLayout rightoperate;//右边操作区域
 
+    private ImageView  wantwater;//我要饮水
 
     //popwindow操作
     private View contentView;
@@ -30,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RelativeLayout outcupleft;
     private RelativeLayout outcupright;
 
-
+    private  PopWindow popChooseWater;
+    private PopWindowChooseWaterGetWay popChooseWatera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initView(){
-
+        wantwater = (ImageView) findViewById(R.id.wantwater);
+        wantwater.setOnClickListener(this);
         //初次进入界面隐藏所有操作界面，显示我要饮水和广告
         leftoperate = (LinearLayout) findViewById(R.id.leftoperate);
         leftoperate.setVisibility(View.GONE);
@@ -55,20 +61,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        //popwindow的初始化
+//        popwindow的初始化
         contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.free_pay_pop, null);
         leftpop = (LinearLayout) contentView.findViewById(R.id.leftpop);
         rightpop = (LinearLayout) contentView.findViewById(R.id.rightpop);
-
         leftpop.setOnClickListener(this);
-        rightpop.setOnClickListener(this);
+        rightpop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
+                popChooseWater.dismiss();
+                PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(MainActivity.this);
+                popChooseWatera.showPopupWindow(new View(MainActivity.this));
+            }
+        });
 
         //出热水的时候的警告框框
 
-        outCupView = LayoutInflater.from(MainActivity.this).inflate(R.layout.prompt_pop,null);
-        outcupleft = (RelativeLayout) outCupView.findViewById(R.id.outcupleft);
-        outcupright = (RelativeLayout) outCupView.findViewById(R.id.outcupright);
-        outcupleft.setOnClickListener(this);
+//        outCupView = LayoutInflater.from(MainActivity.this).inflate(R.layout.prompt_pop,null);
+//        outcupleft = (RelativeLayout) outCupView.findViewById(R.id.outcupleft);
+//        outcupright = (RelativeLayout) outCupView.findViewById(R.id.outcupright);
+//        outcupleft.setOnClickListener(this);
 
 
     }
@@ -94,9 +107,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.rightpop:
                 //弹出二维码
-                PopWindowChooseWaterGetWay popChooseWater = new PopWindowChooseWaterGetWay(MainActivity.this);
-                popChooseWater.showPopupWindow(new View(MainActivity.this));
+                Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
+                popChooseWater.dismiss();
+                PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(MainActivity.this);
+                popChooseWatera.showPopupWindow(new View(MainActivity.this));
                 break;
+
+            case R.id.wantwater:
+//                if(false ==operateornot){
+//                    operateornot = true;
+//                    leftoperate.setVisibility(View.GONE);
+//                    rightoperate.setVisibility(View.GONE);
+//                }else{
+//                    operateornot = false;
+//                    leftoperate.setVisibility(View.VISIBLE);
+//                    rightoperate.setVisibility(View.VISIBLE);
+//                }
+                popChooseWater = new PopWindow(MainActivity.this);
+                popChooseWater.showPopupWindow(new View(MainActivity.this));
         }
 
     }

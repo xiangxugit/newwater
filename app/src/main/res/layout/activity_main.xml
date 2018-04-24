@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -8,10 +9,19 @@
     android:gravity="center"
     >
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/grey"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
     <LinearLayout
         android:id="@+id/leftoperate"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_toRightOf="@+id/middleimg"
@@ -71,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/shuidi"
-                android:layout_height="wrap_content">
+                android:layout_height="110dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +136,12 @@
                 />
 
 
+
+
+
         </LinearLayout>
+
+
 
 
         <!--deviceoperate-->
@@ -185,7 +200,7 @@
 
         <!--设备操作-->
         <Button
-            android:id="@+id/openorclose"
+            android:id="@+id/exit"
             android:text="@string/openorclose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -218,16 +233,7 @@
              />
 
 
-        <TextView
-            android:id="@+id/exit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/ad"
-            android:background="@drawable/button_click"
-            android:gravity="center"
-            android:text="@string/exit" />
+
 
     </RelativeLayout>
 
@@ -289,9 +295,16 @@
 
 
     </LinearLayout>
-
-
-
-
-
 </LinearLayout>
+
+    <ImageView
+        android:id="@+id/wantwater"
+        android:background="@drawable/wantwater"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:gravity="right|bottom"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:layout_marginRight="@dimen/margintop"
+        android:text="@string/coolwater" />
+</FrameLayout>

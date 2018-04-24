@@ -1,5 +1,12 @@
 <resources>
     <dimen name="margintop">20dp</dimen>
+    <dimen name="middlemargin">10dp</dimen>
+
+
+    <!--字体大小-->
+    <dimen name="big">20sp</dimen>
+    <dimen name="middle">15sp</dimen>
+    <dimen name="little">10sp</dimen>
 
 
 </resources>
