@@ -6,16 +6,23 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import newwater.com.newwater.MainActivity;
 import newwater.com.newwater.R;
 
 /**
  * 自定义的PopupWindow
  */
 public class PopWindow extends PopupWindow {
-
+    private LinearLayout freegetWater;
+    private LinearLayout paygetWater;
+    private Activity context;
     public PopWindow(Activity context) {
+        this.context = context;
         // 通过layout的id找到布局View
         View contentView = LayoutInflater.from(context).inflate(R.layout.free_pay_pop, null);
         // 获取PopupWindow的宽高
@@ -38,6 +45,10 @@ public class PopWindow extends PopupWindow {
         this.setAnimationStyle(R.style.PopWindowAnimStyle);
 
         // 这里也可以从contentView中获取到控件，并为它们绑定控件
+        freegetWater = (LinearLayout) contentView.findViewById(R.id.leftpop);
+        freegetWater.setOnClickListener(onclick);
+        paygetWater = (LinearLayout) contentView.findViewById(R.id.rightpop);
+        paygetWater.setOnClickListener(onclick);
     }
 
     // 显示PopupWindow，有两种方法：showAsDropDown、showAtLocation
@@ -52,4 +63,22 @@ public class PopWindow extends PopupWindow {
             this.dismiss();
         }
     }
+
+    View.OnClickListener onclick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            dismiss();
+            switch (v.getId()) {
+                case R.id.leftpop:
+
+                    break;
+                case R.id.rightpop:
+                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
+                    popChooseWatera.showPopupWindow(new View(context));
+                    break;
+            }
+        }
+
+    };
+
 }

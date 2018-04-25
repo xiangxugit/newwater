@@ -37,15 +37,15 @@
             android:layout_height="50dp">
             <ImageView
                 android:id="@+id/wenduji"
-                android:layout_width="25dp"
-                android:layout_height="50dp"
-                android:background="@drawable/wendu"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/thermometer"
                 />
 
             <TextView
                 android:id="@+id/hotwatertext"
                 android:layout_toRightOf="@+id/wenduji"
-                android:textColor="@color/red"
+                android:textColor="@color/redindex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="热93℃"
@@ -57,7 +57,7 @@
                 android:layout_below="@+id/hotwatertext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/whitercolor"
+                android:textColor="@color/blueindex"
                 android:text="冷18℃"
                 android:gravity="bottom"
                 android:layout_alignParentBottom="true"
@@ -67,6 +67,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
@@ -74,21 +76,22 @@
                 android:text="@string/Dts"
                 android:textColor="@color/whitercolor"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margintop"
+                android:layout_marginTop="5dp"
                 />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:orientation="vertical"
                 android:background="@drawable/shuidi"
-                android:layout_height="110dp">
+                android:layout_height="60dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="91"
                     android:layout_gravity="center"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/blueindex"
                     />
 
                 <TextView
@@ -96,7 +99,8 @@
                     android:layout_height="wrap_content"
                     android:text="ppm"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/blueindex"
                     />
 
 
@@ -119,6 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="原水TDS"
+                android:textSize="@dimen/little"
                 android:textColor="@color/whitercolor"
                 />
 
@@ -132,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:text="2184ppm"
                 android:textColor="@color/whitercolor"
-                android:layout_marginLeft="@dimen/margintop"
+                android:layout_marginLeft="5dp"
+                android:textSize="@dimen/little"
                 />
 
 
@@ -147,53 +153,111 @@
         <!--deviceoperate-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/middlemargin"
+            >
 
-
-
-            <TextView
+            <LinearLayout
                 android:id="@+id/tobehot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/jiare"
-                android:textColor="@color/red"
-                />
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
-            <TextView
+                <ImageView
+                    android:id="@+id/hotico"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/hot"
+                    />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jiare"
+                    android:textColor="@color/redindex"
+                    android:layout_below="@+id/hotico"
+                    android:textSize="@dimen/little"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
                 android:id="@+id/tobecool"
                 android:layout_width="wrap_content"
-                android:text="@string/zhileng"
-                android:layout_toRightOf="@+id/tobehot"
-                android:textColor="@color/blue"
-                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_alignParentRight="true"
-                android:layout_height="wrap_content" />
+                >
 
-
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/cool"
+                    />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/zhileng"
+                android:textColor="@color/blueindex"
+                android:gravity="right"
+                android:textSize="@dimen/little"
+                android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/zhishui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_below="@+id/tobehot"
+                >
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/zhishui"
+                    />
+
+            <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/zhishui"
+                android:textSize="@dimen/little"
                 android:textColor="@color/whitercolor"
                 />
+            </LinearLayout>
 
-
-
-            <TextView
+            <LinearLayout
                 android:id="@+id/chongxi"
                 android:layout_width="wrap_content"
-                android:text="@string/chongxi"
-                android:layout_toRightOf="@+id/zhishui"
-                android:layout_below="@+id/tobecool"
-                android:textColor="@color/blue"
-                android:gravity="right"
-
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_alignParentRight="true"
+                android:layout_below="@+id/tobecool"
+                >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/clean"
+                    />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/chongxi"
+                android:textColor="@color/blueindex"
+                android:textSize="@dimen/little"
                 android:layout_height="wrap_content" />
-
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -204,6 +268,10 @@
             android:text="@string/openorclose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/little"
+            android:textColor="@color/blueindex"
+            android:layout_marginLeft="@dimen/little"
+            android:layout_marginRight="@dimen/little"
             />
 
 
@@ -256,42 +324,42 @@
             android:id="@+id/hotwater"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circlebutton"
+            android:background="@drawable/hotwater"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/red"
-            android:text="@string/hotwater" />
+             />
 
         <TextView
             android:id="@+id/warmwater"
-            android:background="@drawable/circlebutton"
+            android:background="@drawable/wenshui"
             android:layout_width="50dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:text="@string/warmwater" />
+            />
 
         <TextView
             android:id="@+id/coolwater"
-            android:background="@drawable/circlebutton"
+            android:background="@drawable/coolwater"
             android:layout_width="50dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:text="@string/coolwater" />
+             />
 
 
         <TextView
             android:id="@+id/dixieccup"
-            android:background="@drawable/circlebutton"
+            android:background="@drawable/getcup"
             android:layout_width="50dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:text="@string/dixieccup" />
+            />
 
 
     </LinearLayout>
@@ -300,10 +368,10 @@
     <ImageView
         android:id="@+id/wantwater"
         android:background="@drawable/wantwater"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_gravity="right|bottom"
         android:gravity="right|bottom"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="18dp"
         android:layout_marginRight="@dimen/margintop"
         android:text="@string/coolwater" />
