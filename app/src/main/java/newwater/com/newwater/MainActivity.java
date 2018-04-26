@@ -1,18 +1,24 @@
 package newwater.com.newwater;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import newwater.com.newwater.utils.TimeBack;
 import newwater.com.newwater.view.PopWindow;
 import newwater.com.newwater.view.PopWindowChooseWaterGetWay;
+import newwater.com.newwater.view.Pop_LeftOperate;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView exit;
@@ -40,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView qrcode;
 
+    //VideoView
+    private VideoView videoplay;
+
+    private FrameLayout root;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +73,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dixieccup = findViewById(R.id.dixieccup);
         dixieccup.setOnClickListener(this);
 
+        root = (FrameLayout) findViewById(R.id.root);
 
 
 //        popwindow的初始化
-        popChooseWater = new PopWindow(MainActivity.this);
-        contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.free_pay_pop, null);
+
+
+
 
 
 
@@ -79,10 +92,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        outcupleft = (RelativeLayout) outCupView.findViewById(R.id.outcupleft);
 //        outcupright = (RelativeLayout) outCupView.findViewById(R.id.outcupright);
 //        outcupleft.setOnClickListener(this);
+        videoplay = (VideoView) findViewById(R.id.playvideo);
+        videoplay.setZOrderOnTop(true);
+
+        //视频播放
+        playVideo();
+
+
 
 
     }
 
+    public void playVideo(){
+//        Uri data = Uri.parse(Environment.getExternalStorageDirectory()
+//                .getPath() + "/chuangyi.mp4");
+
+        Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+//        videoplay.setVideoPath(Environment.getExternalStorageDirectory().getPath()+"/chuangyi.mp4");
+        videoplay.setVideoURI(data);
+
+        videoplay.start();
+
+        //监听视频播放完的代码
+        videoplay.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mPlayer) {
+                // TODO Auto-generated method stub
+                mPlayer.start();
+                mPlayer.setLooping(true);
+            }
+        });
+
+
+        popChooseWater = new PopWindow(MainActivity.this);
+        contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.free_pay_pop, null);
+
+
+
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
