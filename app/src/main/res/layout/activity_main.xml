@@ -11,7 +11,7 @@
     >
 
 
-<VideoView
+<newwater.com.newwater.view.CustomerVideoView
     android:id="@+id/playvideo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -381,7 +381,5 @@
         android:layout_gravity="right|bottom"
         android:gravity="right|bottom"
         android:layout_height="50dp"
-        android:layout_marginBottom="18dp"
-        android:layout_marginRight="@dimen/margintop"
         android:text="@string/coolwater" />
 </FrameLayout>

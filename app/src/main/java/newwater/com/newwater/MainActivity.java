@@ -15,7 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.danikula.videocache.HttpProxyCacheServer;
+
 import newwater.com.newwater.utils.TimeBack;
+import newwater.com.newwater.view.CustomerVideoView;
 import newwater.com.newwater.view.PopWindow;
 import newwater.com.newwater.view.PopWindowChooseWaterGetWay;
 import newwater.com.newwater.view.Pop_LeftOperate;
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView qrcode;
 
     //VideoView
-    private VideoView videoplay;
+    private CustomerVideoView videoplay;
 
     private FrameLayout root;
 
@@ -92,7 +95,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        outcupleft = (RelativeLayout) outCupView.findViewById(R.id.outcupleft);
 //        outcupright = (RelativeLayout) outCupView.findViewById(R.id.outcupright);
 //        outcupleft.setOnClickListener(this);
-        videoplay = (VideoView) findViewById(R.id.playvideo);
+
+
+
+        videoplay = (CustomerVideoView) findViewById(R.id.playvideo);
         videoplay.setZOrderOnTop(true);
 
         //视频播放
@@ -108,9 +114,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                .getPath() + "/chuangyi.mp4");
 
         Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-//        videoplay.setVideoPath(Environment.getExternalStorageDirectory().getPath()+"/chuangyi.mp4");
+//
         videoplay.setVideoURI(data);
 
+//        HttpProxyCacheServer proxy = App.getProxy(MainActivity.this);
+
+//        String proxyUrl = proxy.getProxyUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+//        videoplay.setVideoPath(proxyUrl);
         videoplay.start();
 
         //监听视频播放完的代码

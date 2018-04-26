@@ -73,8 +73,8 @@ public class PopWindow extends PopupWindow {
 
                     break;
                 case R.id.rightpop:
-                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
-                    popChooseWatera.showPopupWindow(new View(context));
+//                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
+//                    popChooseWatera.showPopupWindow(new View(context));
 
 
                     Pop_LeftOperate leftpop = new Pop_LeftOperate(context);
