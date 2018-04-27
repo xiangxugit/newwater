@@ -113,14 +113,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        Uri data = Uri.parse(Environment.getExternalStorageDirectory()
 //                .getPath() + "/chuangyi.mp4");
 
+
+
         Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
 //
-        videoplay.setVideoURI(data);
+//        videoplay.setVideoURI(data);
 
-//        HttpProxyCacheServer proxy = App.getProxy(MainActivity.this);
+        HttpProxyCacheServer proxy = App.getProxy(MainActivity.this);
 
-//        String proxyUrl = proxy.getProxyUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-//        videoplay.setVideoPath(proxyUrl);
+        String proxyUrl = proxy.getProxyUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+        videoplay.setVideoPath(proxyUrl);
         videoplay.start();
 
         //监听视频播放完的代码
