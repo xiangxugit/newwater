@@ -3,8 +3,13 @@ package newwater.com.newwater;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,8 +20,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.danikula.videocache.HttpProxyCacheServer;
 
+import org.json.JSONObject;
+
+import java.util.Timer;
+
+import newwater.com.newwater.adapter.VideoAdapter;
 import newwater.com.newwater.utils.TimeBack;
 import newwater.com.newwater.view.CustomerVideoView;
 import newwater.com.newwater.view.PopWindow;
@@ -54,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FrameLayout root;
 
+    //viewpager 视频
+    private ViewPager viewpager;
+
+    private Timer timer;//定时器，用于实现轮播
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,20 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         exit.setOnClickListener(this);
         dixieccup = findViewById(R.id.dixieccup);
         dixieccup.setOnClickListener(this);
-
         root = (FrameLayout) findViewById(R.id.root);
-
-
 //        popwindow的初始化
-
-
-
-
-
-
-
-
-
         //出热水的时候的警告框框
 
 //        outCupView = LayoutInflater.from(MainActivity.this).inflate(R.layout.prompt_pop,null);
@@ -102,32 +108,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         videoplay.setZOrderOnTop(true);
 
         //视频播放
-        playVideo();
 
+
+//        viewpager = (ViewPager) findViewById(R.id.viewpage);
+        playVideo();
 
 
 
     }
 
-    public void playVideo(){
-//        Uri data = Uri.parse(Environment.getExternalStorageDirectory()
-//                .getPath() + "/chuangyi.mp4");
 
 
 
-        Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-//
-//        videoplay.setVideoURI(data);
+        public void playVideo(){
+          //是否需要播放的资源
 
+        String test = TestJSON.strategy();
+        Log.e("test","test"+test);
+        com.alibaba.fastjson.JSONObject testobj = JSON.parseObject(test);
+        String videoListString = testobj.getString("videoList");
+        JSONArray videolist = JSON.parseArray(videoListString);
+        //循环
+        for(int i=0;i<videolist.size();i++){
+            Log.e("test1","test1"+videolist.get(i));
+        }
+//        VideoAdapter videoAdapter = new VideoAdapter(MainActivity.this,videolist);
+//        viewpager.setAdapter(videoAdapter);
+
+//        Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         HttpProxyCacheServer proxy = App.getProxy(MainActivity.this);
-
         String proxyUrl = proxy.getProxyUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         videoplay.setVideoPath(proxyUrl);
         videoplay.start();
 
-        //监听视频播放完的代码
         videoplay.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
             @Override
             public void onCompletion(MediaPlayer mPlayer) {
                 // TODO Auto-generated method stub
@@ -139,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         popChooseWater = new PopWindow(MainActivity.this);
         contentView = LayoutInflater.from(MainActivity.this).inflate(R.layout.free_pay_pop, null);
-
 
 
     }

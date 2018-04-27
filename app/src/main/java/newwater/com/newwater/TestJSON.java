@@ -27,6 +27,6 @@ public class TestJSON {
          strategy.setVideoList(VideList);
          strategy.setVideoplayTime(videoplaytime);
          String jsonString2 = JSON.toJSONString(strategy);
-         return "";
+         return jsonString2;
     }
 }
