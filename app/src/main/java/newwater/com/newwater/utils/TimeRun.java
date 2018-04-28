@@ -20,7 +20,6 @@ public  class TimeRun {
                 handler.sendEmptyMessage(what);
             }
         };
-
         Timer timer = new Timer(true);
         Date time = TimeUtils.strToDateLong(timestring);
         timer.schedule(task,time,loopjiange);
