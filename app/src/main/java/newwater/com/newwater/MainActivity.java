@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         final int maxloop;
-        String test = TestJSON.strategy();
-        Log.e("test","test"+test);
-        JSONArray alldata = JSON.parseArray(test);
+        String testa = TestJSON.strategy();
+        Log.e("test","test"+testa);
+        JSONArray alldata = JSON.parseArray(testa);
 
 
-
+        String test = alldata.getString(0);
         com.alibaba.fastjson.JSONObject testobj = JSON.parseObject(test);
         String videoListString = testobj.getString("videoList");
         final JSONArray videolist = JSON.parseArray(videoListString);
@@ -188,6 +188,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+
+            //视频播放的错误处
+            videoplay.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mediaPlayer, int what, int extra) {
+
+                    if(what==MediaPlayer.MEDIA_ERROR_SERVER_DIED){
+                        //媒体服务器挂掉了。此时，程序必须释放MediaPlayer 对象，并重新new 一个新的。
+                        Toast.makeText(MainActivity.this,
+                                "网络服务错误",
+                                Toast.LENGTH_LONG).show();
+                    }else if(what==MediaPlayer.MEDIA_ERROR_UNKNOWN){
+                        if(extra==MediaPlayer.MEDIA_ERROR_IO){
+                            //文件不存在或错误，或网络不可访问错误
+                            Toast.makeText(MainActivity.this,
+                                    "网络文件错误",
+                                    Toast.LENGTH_LONG).show();
+                        } else if(extra==MediaPlayer.MEDIA_ERROR_TIMED_OUT){
+                            //超时
+                            Toast.makeText(MainActivity.this,
+                                    "网络超时",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+
+                    videoplay.stopPlayback();//释放VideoView原来的MediaPlayer
+
+                    videoplay.resume();//VideoView内部重新new MediaPlayer
+
+                    videoplay.setVideoPath(videolist.getString(0));
+
+                    videoplay.start();//播放
+
+
+                    return false;
+                }
+            });
+
 
 
         popChooseWater = new PopWindow(MainActivity.this);
