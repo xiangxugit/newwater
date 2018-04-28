@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final int maxloop;
         String test = TestJSON.strategy();
         Log.e("test","test"+test);
+        JSONArray alldata = JSON.parseArray(test);
+
+
+
         com.alibaba.fastjson.JSONObject testobj = JSON.parseObject(test);
         String videoListString = testobj.getString("videoList");
         final JSONArray videolist = JSON.parseArray(videoListString);
