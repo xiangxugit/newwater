@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Timer timer;//定时器，用于实现轮播
 
+    static int pos = 0;
+    HttpProxyCacheServer proxy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 //        viewpager = (ViewPager) findViewById(R.id.viewpage);
+        proxy = App.getProxy(MainActivity.this);
         playVideo();
 
 
@@ -123,30 +127,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void playVideo(){
           //是否需要播放的资源
 
+
+        final int maxloop;
         String test = TestJSON.strategy();
         Log.e("test","test"+test);
         com.alibaba.fastjson.JSONObject testobj = JSON.parseObject(test);
         String videoListString = testobj.getString("videoList");
-        JSONArray videolist = JSON.parseArray(videoListString);
+        final JSONArray videolist = JSON.parseArray(videoListString);
         //循环
-        for(int i=0;i<videolist.size();i++){
-            Log.e("test1","test1"+videolist.get(i));
-        }
+
+        maxloop = videolist.size();
+
+//        for(int i=0;i<videolist.size();i++){
+//            Log.e("test1","test1"+videolist.get(i));
+//        }
 //        VideoAdapter videoAdapter = new VideoAdapter(MainActivity.this,videolist);
 //        viewpager.setAdapter(videoAdapter);
 
 //        Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-        HttpProxyCacheServer proxy = App.getProxy(MainActivity.this);
-        String proxyUrl = proxy.getProxyUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+
+        String proxyUrl = proxy.getProxyUrl(videolist.getString(0));
         videoplay.setVideoPath(proxyUrl);
         videoplay.start();
 
-        videoplay.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//        videoplay.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                mp.start();
+//                mp.setLooping(true);
+//
+//            }
+//        });
+
+             final int videoflag = 0;//标志播放次数
+            videoplay.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
             @Override
             public void onCompletion(MediaPlayer mPlayer) {
                 // TODO Auto-generated method stub
-                mPlayer.start();
-                mPlayer.setLooping(true);
+                pos = pos+1;
+                Log.e("pos","pos"+pos);
+                Log.e("maxloop","maxloop"+maxloop);
+
+                if(pos==maxloop){
+                    pos =0;
+                    String proxyUrl = proxy.getProxyUrl(videolist.getString(pos));
+                    videoplay.setVideoPath(proxyUrl);
+                    videoplay.start();
+                }else{
+                    videoplay.setVideoPath(videolist.getString(pos));
+                    videoplay.start();
+                }
+//                mPlayer.start();
+//                mPlayer.setLooping(true);
+
             }
         });
 
