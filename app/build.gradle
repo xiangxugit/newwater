@@ -28,5 +28,9 @@ dependencies {
     compile 'com.danikula:videocache:2.6.4'
     compile 'com.alibaba:fastjson:1.2.47'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
+    //添加 zxing
+    compile 'com.google.zxing:core:3.3.0'
+    //Zxing 生成二维码依赖
+    compile 'com.journeyapps:zxing-android-embedded:3.3.0'  //生成二维码依赖
 
 }

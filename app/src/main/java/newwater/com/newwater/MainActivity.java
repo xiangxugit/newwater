@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String test = alldata.getString(0);
         com.alibaba.fastjson.JSONObject testobj = JSON.parseObject(test);
         String videoListString = testobj.getString("videoList");
+        Log.e("videoListString","videoListString"+videoListString);
         final JSONArray videolist = JSON.parseArray(videoListString);
         //循环
 
