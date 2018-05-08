@@ -42,4 +42,19 @@ public class TestJSON {
          String jsonString2 = JSON.toJSONString(stragegyList);
          return jsonString2;
     }
+
+
+    //集中模式
+
+    /**
+     *
+     * @return   0 售水模式
+     *  0 售水模式
+       1 零售模式
+       2 租赁模式
+     */
+    public static int getModel(){
+
+         return 0;
+    }
 }

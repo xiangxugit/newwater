@@ -34,6 +34,7 @@ import newwater.com.newwater.view.CustomerVideoView;
 import newwater.com.newwater.view.PopWindow;
 import newwater.com.newwater.view.PopWindowChooseWaterGetWay;
 import newwater.com.newwater.view.Pop_LeftOperate;
+import newwater.com.newwater.view.Pop_WantWater;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView exit;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static  LinearLayout leftoperate;//左边操作区域
     public static LinearLayout rightoperate;//右边操作区域
 
-    public static ImageView  wantwater;//我要饮水
+//    public static ImageView  wantwater;//我要饮水
 
     //popwindow操作
     private View contentView;
@@ -58,13 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  PopWindow popChooseWater;
     private PopWindowChooseWaterGetWay popChooseWatera;
 
-
+    private RelativeLayout root;
     private ImageView qrcode;
 
     //VideoView
-    private CustomerVideoView videoplay;
+    private VideoView videoplay;
 
-    private FrameLayout root;
 
     //viewpager 视频
     private ViewPager viewpager;
@@ -83,56 +83,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initView(){
-        wantwater = (ImageView) findViewById(R.id.wantwater);
-        wantwater.setOnClickListener(this);
-        //初次进入界面隐藏所有操作界面，显示我要饮水和广告
-        leftoperate = (LinearLayout) findViewById(R.id.leftoperate);
-        leftoperate.setVisibility(View.GONE);
+        root =  (RelativeLayout) findViewById(R.id.root);
 
-        rightoperate = (LinearLayout) findViewById(R.id.rightoperate);
-        rightoperate.setVisibility(View.GONE);
-
-        exit = (TextView) findViewById(R.id.exit);
-        exit.setOnClickListener(this);
-        dixieccup = findViewById(R.id.dixieccup);
-        dixieccup.setOnClickListener(this);
-        root = (FrameLayout) findViewById(R.id.root);
-//        popwindow的初始化
-        //出热水的时候的警告框框
-
-//        outCupView = LayoutInflater.from(MainActivity.this).inflate(R.layout.prompt_pop,null);
-//        outcupleft = (RelativeLayout) outCupView.findViewById(R.id.outcupleft);
-//        outcupright = (RelativeLayout) outCupView.findViewById(R.id.outcupright);
-//        outcupleft.setOnClickListener(this);
-
-
-
-        videoplay = (CustomerVideoView) findViewById(R.id.playvideo);
+        videoplay = (VideoView) findViewById(R.id.playvideo);
         videoplay.setZOrderOnTop(true);
-
         //视频播放
-
-
-//        viewpager = (ViewPager) findViewById(R.id.viewpage);
         proxy = App.getProxy(MainActivity.this);
+        // 获取当前设备是哪一种模式
+        int   model = TestJSON.getModel();
+        if(model == 0){
+            //售水模式
+        }
+
+
         playVideo();
-
-
-
     }
 
 
 
+    /**
+     * 这个函数在Activity创建完成之后会调用。购物车悬浮窗需要依附在Activity上，如果Activity还没有完全建好就去
+     * 调用showCartFloatView()，则会抛出异常
+     * @param hasFocus
+     */
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Pop_WantWater pop_wantWater = new Pop_WantWater(MainActivity.this);
+        pop_wantWater.showPopupWindow(root);
+    }
 
         public void playVideo(){
           //是否需要播放的资源
-
-
         final int maxloop;
         String testa = TestJSON.strategy();
         Log.e("test","test"+testa);
         JSONArray alldata = JSON.parseArray(testa);
-
 
         String test = alldata.getString(0);
         com.alibaba.fastjson.JSONObject testobj = JSON.parseObject(test);
@@ -140,30 +126,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e("videoListString","videoListString"+videoListString);
         final JSONArray videolist = JSON.parseArray(videoListString);
         //循环
-
         maxloop = videolist.size();
-
-//        for(int i=0;i<videolist.size();i++){
-//            Log.e("test1","test1"+videolist.get(i));
-//        }
-//        VideoAdapter videoAdapter = new VideoAdapter(MainActivity.this,videolist);
-//        viewpager.setAdapter(videoAdapter);
-
-//        Uri data = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-
         String proxyUrl = proxy.getProxyUrl(videolist.getString(0));
         videoplay.setVideoPath(proxyUrl);
         videoplay.start();
 
-//        videoplay.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                mp.start();
-//                mp.setLooping(true);
-//
-//            }
-//        });
+
 
              final int videoflag = 0;//标志播放次数
             videoplay.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
