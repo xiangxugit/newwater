@@ -77,17 +77,24 @@ public class PopWindow extends PopupWindow {
                     timebackpop.showPopupWindow(new View(context));
                     TextView  timebacktextView = Pop_TimeBack.seeaddtimeback;
                     TimeBack timeback = new TimeBack(timebacktextView,6000,1000);
-                    break;
-                case R.id.rightpop:
-//                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
-//                    popChooseWatera.showPopupWindow(new View(context));
-
 
                     Pop_LeftOperate leftpop = new Pop_LeftOperate(context);
                     leftpop.showPopupWindow(new View(context));
 
                     Pop_RightOperate rightPop = new Pop_RightOperate(context);
                     rightPop.showPopupWindow(new View(context));
+
+                    break;
+                case R.id.rightpop:
+//                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
+//                    popChooseWatera.showPopupWindow(new View(context));
+
+
+//                    Pop_LeftOperate leftpop = new Pop_LeftOperate(context);
+//                    leftpop.showPopupWindow(new View(context));
+//
+//                    Pop_RightOperate rightPop = new Pop_RightOperate(context);
+//                    rightPop.showPopupWindow(new View(context));
 
 
                     break;

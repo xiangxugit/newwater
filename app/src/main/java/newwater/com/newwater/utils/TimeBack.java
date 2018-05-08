@@ -43,7 +43,8 @@ public class TimeBack {
         @Override
         public void onFinish() {
             // TODO Auto-generated method stub
-            showTextView.setText("30S");
+            showTextView.setText("");
+
             showTextView.setClickable(true);
         }
 
