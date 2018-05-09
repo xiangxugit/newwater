@@ -27,7 +27,7 @@ public class Pop_LeftOperate extends PopupWindow {
         this.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         // 设置PopupWindow弹出窗体可点击（下面两行代码必须同时出现）
-        this.setFocusable(true);
+//        this.setFocusable(true);
         this.setOutsideTouchable(false); // 当点击外围的时候隐藏PopupWindow
         // 刷新状态
         this.update();

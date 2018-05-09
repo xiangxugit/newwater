@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import newwater.com.newwater.MainActivity;
@@ -18,7 +19,9 @@ import newwater.com.newwater.R;
  */
 public class PopWindowChooseWaterGetWay extends PopupWindow {
     private Activity context;
-    private ImageView qrcode;
+    public static ImageView qrcode;
+    public  static TextView getwater;
+
     // 弹窗子类项选中时的监听
     private OnItemOnClickListener mItemOnClickListener;
 
@@ -47,8 +50,11 @@ public class PopWindowChooseWaterGetWay extends PopupWindow {
         this.setAnimationStyle(R.style.PopWindowAnimStyle);
 
         // 这里也可以从contentView中获取到控件，并为它们绑定控件
-        qrcode = contentView.findViewById(R.id.qrcode);
+        qrcode = (ImageView) contentView.findViewById(R.id.qrcode);
         qrcode.setOnClickListener(onclick);
+
+        getwater = (TextView) contentView.findViewById(R.id.getwater);
+
 
     }
 

@@ -4,6 +4,7 @@
 
 
     <!--字体大小-->
+    <dimen name="verybig">50sp</dimen>
     <dimen name="big">20sp</dimen>
     <dimen name="middle">15sp</dimen>
     <dimen name="little">10sp</dimen>

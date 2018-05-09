@@ -57,4 +57,9 @@ public class TestJSON {
 
          return 0;
     }
+
+
+    public static String getWeiXinQcode(){
+        return "erweimacode";
+    }
 }

@@ -1,11 +1,14 @@
 package newwater.com.newwater.view;
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 
 import newwater.com.newwater.MainActivity;
 import newwater.com.newwater.R;
+import newwater.com.newwater.TestJSON;
+import newwater.com.newwater.utils.Create2QR2;
 import newwater.com.newwater.utils.TimeBack;
 import newwater.com.newwater.utils.TimeUtils;
 
@@ -23,10 +28,12 @@ public class PopWindow extends PopupWindow {
     private LinearLayout freegetWater;
     private LinearLayout paygetWater;
     private Activity context;
+    TextView  timebacktextView;
     public PopWindow(Activity context) {
         this.context = context;
         // 通过layout的id找到布局View
         View contentView = LayoutInflater.from(context).inflate(R.layout.free_pay_pop, null);
+
         // 获取PopupWindow的宽高
         int h = context.getWindowManager().getDefaultDisplay().getHeight();
         int w = context.getWindowManager().getDefaultDisplay().getWidth();
@@ -75,19 +82,27 @@ public class PopWindow extends PopupWindow {
                     dismiss();
                     Pop_TimeBack timebackpop = new Pop_TimeBack(context);
                     timebackpop.showPopupWindow(new View(context));
-                    TextView  timebacktextView = Pop_TimeBack.seeaddtimeback;
-                    TimeBack timeback = new TimeBack(timebacktextView,6000,1000);
-
-                    Pop_LeftOperate leftpop = new Pop_LeftOperate(context);
-                    leftpop.showPopupWindow(new View(context));
-
-                    Pop_RightOperate rightPop = new Pop_RightOperate(context);
-                    rightPop.showPopupWindow(new View(context));
-
+                    timebacktextView = Pop_TimeBack.seeaddtimeback;
+//                    TimeBack timeback = new TimeBack(timebacktextView,6000,1000);
+                    TimeCount timecount =  new TimeCount(6000, 1000);
+                    timecount.start();
                     break;
                 case R.id.rightpop:
-//                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
-//                    popChooseWatera.showPopupWindow(new View(context));
+
+
+                    PopWindowChooseWaterGetWay popChooseWatera = new PopWindowChooseWaterGetWay(context);
+                    popChooseWatera.showPopupWindow(new View(context));
+
+                    ImageView qcode = PopWindowChooseWaterGetWay.qrcode;
+                    String qcodestring = TestJSON.getWeiXinQcode();
+                    Bitmap qcodebitmap = Create2QR2.createBitmap(qcodestring);
+                    qcode.setImageBitmap(qcodebitmap);
+
+                    TextView rightText = PopWindowChooseWaterGetWay.getwater;
+                    rightText.setText("扫码关注，完成用户绑定");
+
+                    //获取imageView设置二维码 改变textView的文字
+
 
 
 //                    Pop_LeftOperate leftpop = new Pop_LeftOperate(context);
@@ -102,5 +117,38 @@ public class PopWindow extends PopupWindow {
         }
 
     };
+
+
+    public class TimeCount extends CountDownTimer {
+
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+            timebacktextView.setClickable(false);
+            timebacktextView.setText(millisUntilFinished/1000+"秒");
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            timebacktextView.setText("");
+            Pop_LeftOperate leftpop = new Pop_LeftOperate(context);
+            leftpop.showPopupWindow(new View(context));
+
+            Pop_RightOperate rightPop = new Pop_RightOperate(context);
+            rightPop.showPopupWindow(new View(context));
+            timebacktextView.setClickable(true);
+        }
+
+
+
+
+    }
 
 }

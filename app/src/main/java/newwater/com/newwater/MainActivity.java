@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         Pop_WantWater pop_wantWater = new Pop_WantWater(MainActivity.this);
-        pop_wantWater.showPopupWindow(root);
+        pop_wantWater.showPopupWindow(new View(this));
     }
 
         public void playVideo(){

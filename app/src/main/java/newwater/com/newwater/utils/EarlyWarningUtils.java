@@ -14,21 +14,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class EarlyWarningUtils {
 
-    public static Bitmap createBitmap(String str){
-        Bitmap bitmap = null;
-        BitMatrix result = null;
-        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        try {
-            result = multiFormatWriter.encode(str, BarcodeFormat.QR_CODE, 400, 400);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            bitmap = barcodeEncoder.createBitmap(result);
-        } catch (WriterException e){
-            e.printStackTrace();
-        } catch (IllegalArgumentException iae){ // ?
-            return null;
-        }
-        return bitmap;
-    }
+
 
 
 }

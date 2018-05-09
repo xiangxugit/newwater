@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/grey"
     android:layout_margin="@dimen/margintop"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -13,11 +15,14 @@
         android:gravity="center"
         >
 
-        <ImageView
+        <TextView
             android:id="@+id/waringico"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/ic_launcher_foreground"
+            android:text="!"
+            android:textColor="@color/red"
+            android:gravity="center"
+
             />
         <TextView
             android:layout_toRightOf="@+id/waringico"
@@ -42,17 +47,20 @@
             android:id="@+id/outcupleft"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/circlebutton"
+            android:background="@drawable/circlebuttonred"
             android:layout_gravity="center"
             android:gravity="center"
             >
 
-            <ImageView
+            <TextView
                 android:id="@+id/topsure"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="13dp"
-                android:background="@drawable/shuidi"
+                android:text="√"
+                android:textSize="@dimen/verybig"
+                android:gravity="center"
+                android:textColor="@color/whitercolor"
 
                 />
             <TextView
@@ -62,6 +70,7 @@
                 android:text="@string/sure"
                 android:layout_below="@+id/topsure"
                 android:gravity="center"
+                android:textColor="@color/whitercolor"
                 />
 
 
@@ -72,19 +81,22 @@
         <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/circlebutton"
+            android:background="@drawable/circlebuttonblue"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginLeft="@dimen/margintop"
             android:id="@+id/outcupright"
             >
 
-            <ImageView
+            <TextView
                 android:id="@+id/topcancelimage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="13dp"
-                android:background="@drawable/shuidi"
+                android:textColor="@color/whitercolor"
+                android:gravity="center"
+                android:text="X"
+                android:textSize="@dimen/verybig"
 
                 />
             <TextView

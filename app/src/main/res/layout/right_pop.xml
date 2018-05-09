@@ -21,6 +21,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/red"
+            android:text="热水"
+            android:textSize="0sp"
             />
 
         <TextView
@@ -41,6 +43,8 @@
             android:gravity="center"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
+            android:text="冷水"
+            android:textSize="0sp"
             />
 
 

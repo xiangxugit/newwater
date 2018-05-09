@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import newwater.com.newwater.MainActivity;
 import newwater.com.newwater.R;
@@ -19,6 +20,7 @@ import newwater.com.newwater.R;
 public class Pop_WantWater extends PopupWindow {
     private Activity context;
     private ImageView wantwater;
+    private TextView getwater;
     public Pop_WantWater(Activity context) {
         // 通过layout的id找到布局View
         this.context = context;
@@ -65,7 +67,7 @@ public class Pop_WantWater extends PopupWindow {
     View.OnClickListener onclick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            dismiss();
+//            dismiss();
             switch (v.getId()) {
 
                 case R.id.wantwater:

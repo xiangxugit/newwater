@@ -2,11 +2,18 @@ package newwater.com.newwater.view;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.logging.Handler;
 
 import newwater.com.newwater.R;
 
@@ -14,9 +21,13 @@ import newwater.com.newwater.R;
  * 自定义的PopupWindow
  */
 public class PopWarning extends PopupWindow {
-
+    private Activity context;
+    private RelativeLayout outcupleft;
+    private RelativeLayout outcupright;
+    private TextView bottomsure;
     public PopWarning(Activity context) {
         // 通过layout的id找到布局View
+        this.context = context;
         View contentView = LayoutInflater.from(context).inflate(R.layout.prompt_pop, null);
         // 获取PopupWindow的宽高
         int h = context.getWindowManager().getDefaultDisplay().getHeight();
@@ -38,6 +49,12 @@ public class PopWarning extends PopupWindow {
         this.setAnimationStyle(R.style.PopWindowAnimStyle);
 
         // 这里也可以从contentView中获取到控件，并为它们绑定控件
+        outcupleft = (RelativeLayout) contentView.findViewById(R.id.outcupleft);
+        outcupleft.setOnClickListener(onclick);
+        outcupright = (RelativeLayout) contentView.findViewById(R.id.outcupright);
+        outcupright.setOnClickListener(onclick);
+        bottomsure = (TextView) contentView.findViewById(R.id.bottomsure);
+
     }
 
     // 显示PopupWindow，有两种方法：showAsDropDown、showAtLocation
@@ -52,4 +69,37 @@ public class PopWarning extends PopupWindow {
             this.dismiss();
         }
     }
+
+
+
+    View.OnClickListener onclick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            dismiss();
+            switch (v.getId()) {
+
+                case R.id.outcupleft:
+//                    PopWindow popWindow = new PopWindow(context);
+//                    popWindow.showPopupWindow(new View(context));
+
+                    String hotwatertext = Pop_RightOperate.hotwater.getText().toString();
+                    if("热水".equals(hotwatertext)){
+                        Pop_RightOperate.hotwater.setText("停止取水");
+                        Pop_RightOperate.hotwater.setBackgroundResource(R.drawable.hotwaterstop);
+                    }else{
+                        Pop_RightOperate.hotwater.setText("热水");
+                    }
+
+                    Toast.makeText(context,"出热水",Toast.LENGTH_SHORT).show();
+                    // 延迟15秒
+                    break;
+                case R.id.outcupright:
+                    Toast.makeText(context,"取消水",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+
+    };
+
+
 }

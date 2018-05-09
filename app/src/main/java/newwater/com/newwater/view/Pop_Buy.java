@@ -1,22 +1,29 @@
 package newwater.com.newwater.view;
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import newwater.com.newwater.R;
+import newwater.com.newwater.TestJSON;
+import newwater.com.newwater.utils.Create2QR2;
 
 /**
  * 自定义的PopupWindow
  */
 public class Pop_Buy extends PopupWindow {
-
+    private Activity context;
+    private ImageView middleico;
     public Pop_Buy(Activity context) {
         // 通过layout的id找到布局View
+        this.context = context;
+
         View contentView = LayoutInflater.from(context).inflate(R.layout.no_money_pop, null);
         // 获取PopupWindow的宽高
         int h = context.getWindowManager().getDefaultDisplay().getHeight();
@@ -38,6 +45,14 @@ public class Pop_Buy extends PopupWindow {
         this.setAnimationStyle(R.style.PopWindowAnimStyle);
 
         // 这里也可以从contentView中获取到控件，并为它们绑定控件
+        middleico = (ImageView) contentView.findViewById(R.id.middleico);
+
+
+        //根据用户信息生成充值二维码
+        String payurl = TestJSON.getWeiXinQcode();
+        Bitmap paymoneybitm = Create2QR2.createBitmap(payurl);
+        middleico.setImageBitmap(paymoneybitm);
+
     }
 
     // 显示PopupWindow，有两种方法：showAsDropDown、showAtLocation
