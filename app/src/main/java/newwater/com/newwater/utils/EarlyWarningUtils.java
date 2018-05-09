@@ -15,6 +15,4 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class EarlyWarningUtils {
 
 
-
-
 }
